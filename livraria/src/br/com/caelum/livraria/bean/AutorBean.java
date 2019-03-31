@@ -1,11 +1,13 @@
 package br.com.caelum.livraria.bean;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
 
 @ManagedBean
+@ViewScoped
 public class AutorBean {
 
 	private Autor autor = new Autor();
@@ -18,5 +20,12 @@ public class AutorBean {
 		System.out.println("Gravando autor " + this.autor.getNome());
 
 		new DAO<Autor>(Autor.class).adiciona(this.autor);
+		limpar();
+
+	}
+
+	public void limpar() {
+		this.autor = new Autor();
+
 	}
 }
