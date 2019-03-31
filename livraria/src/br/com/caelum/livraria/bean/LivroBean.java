@@ -41,12 +41,21 @@ public class LivroBean {
 			 * // throw new RuntimeException("Livro deve ter pelo menos um Autor."); ////
 			 * FacesContext.getCurrentInstance().addMessage("autor", //// new
 			 * FacesMessage("Livro deve ter pelo menos um Autor."));
-			 */ 
-			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("Livro deve ter pelo menos um Autor"));
-		
-		}else {
+			 */
+			FacesContext.getCurrentInstance().addMessage("autor",
+					new FacesMessage("Livro deve ter pelo menos um Autor"));
+
+		} else {
 			new DAO<Livro>(Livro.class).adiciona(this.livro);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Livro gravado com sucesso!"));
+			limpar();
 		}
+
+	}
+
+	public void limpar() {
+		livro = new Livro();
 
 	}
 
@@ -69,7 +78,7 @@ public class LivroBean {
 	public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {
 		String valor = value.toString();
 		if (!valor.startsWith("1")) {
-			throw new ValidatorException(new FacesMessage("Deveria começar com !"));
+			throw new ValidatorException(new FacesMessage("Deveria começar com 1!"));
 		}
 	}
 
