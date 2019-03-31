@@ -7,8 +7,8 @@
     version="2.0">
 
 
-<lifecycle>
-	<phase-listener>br.com.caelum.livraria.util.LogPhaseListener</phase-listener>
-</lifecycle>
+<!-- <lifecycle> -->
+<!-- 	<phase-listener>br.com.caelum.livraria.util.LogPhaseListener</phase-listener> -->
+<!-- </lifecycle> -->
 
 </faces-config>

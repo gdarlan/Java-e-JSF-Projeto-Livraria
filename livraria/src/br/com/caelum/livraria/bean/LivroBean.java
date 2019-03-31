@@ -36,27 +36,40 @@ public class LivroBean {
 	public void gravar() {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
+		FacesContext currentInstance = FacesContext.getCurrentInstance();
+		
 		if (livro.getAutores().isEmpty()) {
-			/*
-			 * // throw new RuntimeException("Livro deve ter pelo menos um Autor."); ////
-			 * FacesContext.getCurrentInstance().addMessage("autor", //// new
-			 * FacesMessage("Livro deve ter pelo menos um Autor."));
-			 */
-			FacesContext.getCurrentInstance().addMessage("autor",
+			currentInstance.addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 
 		} else {
-			new DAO<Livro>(Livro.class).adiciona(this.livro);
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Livro gravado com sucesso!"));
+			if (this.livro.getId() == null) {
+
+				new DAO<Livro>(Livro.class).adiciona(this.livro);
+				currentInstance.addMessage(null, new FacesMessage("Livro gravado com sucesso!"));
+			} else {
+				new DAO<Livro>(Livro.class).atualiza(this.livro);
+				currentInstance.addMessage(null, new FacesMessage("Livro alterado alterado com sucesso!"));
+			}
+
 			limpar();
 		}
 
 	}
 
+	public void remover(Livro livro) {
+		new DAO<Livro>(Livro.class).remove(livro);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Livro removido com sucesso!"));
+	}
+
 	public void limpar() {
 		livro = new Livro();
 
+	}
+
+	public void carregar(Livro livro) {
+		System.out.println("carregando livro");
+		this.livro = livro;
 	}
 
 	public List<Livro> getLivros() {
