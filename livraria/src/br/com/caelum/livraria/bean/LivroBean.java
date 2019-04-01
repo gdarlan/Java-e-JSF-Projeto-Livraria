@@ -56,7 +56,12 @@ public class LivroBean {
 		}
 
 	}
-
+	
+	public void removerAutorDoLivro(Autor autor) {
+		this.livro.removeAutor(autor);
+	}
+	
+	
 	public void remover(Livro livro) {
 		new DAO<Livro>(Livro.class).remove(livro);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Livro removido com sucesso!"));

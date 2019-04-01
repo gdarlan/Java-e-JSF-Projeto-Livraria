@@ -104,4 +104,9 @@ public class Livro {
 		return true;
 	}
 
+	public void removeAutor(Autor autor) {
+		this.autores.remove(autor);
+
+	}
+
 }
