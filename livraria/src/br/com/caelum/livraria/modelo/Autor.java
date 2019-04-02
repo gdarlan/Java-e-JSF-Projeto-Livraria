@@ -11,7 +11,7 @@ public class Autor {
 	@GeneratedValue
 	private Integer id;
 	private String nome;
-
+	private String email;
 	public String getNome() {
 		return nome;
 	}
@@ -51,6 +51,14 @@ public class Autor {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	
