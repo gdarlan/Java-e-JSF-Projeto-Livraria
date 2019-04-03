@@ -1,6 +1,7 @@
 package br.com.caelum.livraria.bean;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -18,11 +19,15 @@ public class UsuarioDao {
 		query.setParameter("pEmail", usuario.getEmail());
 		query.setParameter("pSenha", usuario.getSenha());
 
-		Usuario resultado = query.getSingleResult();
+		try {
+			Usuario resultado = query.getSingleResult();
+		} catch (NoResultException ex) {
+			return false;
+		}
 
 		em.close();
 
-		return resultado != null;
+		return true;
 	}
 
 }
