@@ -19,14 +19,16 @@ public class LoginBean {
 
 		boolean existe = new UsuarioDao().existe(this.getUsuario());
 
+		FacesContext context = FacesContext.getCurrentInstance();
 		if (existe) {
+			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
 			return "livro?faces-redirect=true";
-		}else {
-			FacesContext context=FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Erro"));
-			return null;
+		} else {
+			context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+			context.getExternalContext().getFlash();
+			return "login?faces-redirect=true";
 		}
-		
+
 	}
 
 	public Usuario getUsuario() {
@@ -35,6 +37,12 @@ public class LoginBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String deslogar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		return "login?faces-redirect=true";
 	}
 
 }

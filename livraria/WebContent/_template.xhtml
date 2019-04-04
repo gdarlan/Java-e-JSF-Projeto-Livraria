@@ -11,6 +11,10 @@
 
 	<div id="cabecalho">
 		<h:graphicImage library="img" name="logo.png"/>
+		<h:form rendered="#{usuarioLogado != null}">
+			<h:commandLink value="Sair" action="#{loginBean.deslogar}"/>
+		</h:form>
+		
 		<h1>
 			<ui:insert name="titulo"></ui:insert>
 		</h1>
@@ -22,7 +26,6 @@
 	<hr/>
 	<div id="rodape">
 		<ui:insert name="rodape">
-			<hr/>
 			<small>&copy; Copyright 2017, Alura</small>
 		
 		</ui:insert>

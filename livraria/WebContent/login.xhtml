@@ -14,14 +14,14 @@
 
         <ui:define name="conteudo">
             <h:form id="login">
-            <h:messages globalOnly="true" />
+            <h:messages globalOnly="true"/>
                 <fieldset>
                     <legend>Login</legend>
                     <h:panelGrid columns="3">
 
-                        <h:outputLabel value="Email:" for="email" />
+                        <h:outputLabel value="E-mail:" for="email" />
                         <h:inputText id="email" value="#{loginBean.usuario.email}"
-                            required="true">
+                            required="true" requiredMessage="E-mail é obrigatório">
                             <f:passThroughAttribute name="type" value="email" />
                         </h:inputText>
 
@@ -29,7 +29,7 @@
 
                         <h:outputLabel value="Senha:" for="senha" />
                         <h:inputText id="senha" value="#{loginBean.usuario.senha}"
-                            required="true">
+                            required="true" requiredMessage="Senha é obrigatório">
                             <f:passThroughAttribute name="type" value="password" />
                         </h:inputText>
 
